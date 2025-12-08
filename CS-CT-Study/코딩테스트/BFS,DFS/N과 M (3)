@@ -1,0 +1,42 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
+
+public class Main {
+    static int n;
+    static int targetCount;
+    static int[] result;
+    static StringBuilder sb = new StringBuilder();
+
+    public static void main(String[] args) throws IOException {
+        input();
+        combination(1, 0);
+        System.out.println(sb.toString());
+    }
+
+    private static void input() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        StringTokenizer st = new StringTokenizer(br.readLine());
+        n = Integer.parseInt(st.nextToken());
+        targetCount = Integer.parseInt(st.nextToken());
+        result = new int[targetCount];
+    }
+
+    private static void combination(int start, int cnt) {
+        if(targetCount == cnt){
+            for(int i = 0; i < cnt; i++){
+                sb.append(result[i]).append(" ");
+            }
+            sb.append("\n");
+            return;
+        }
+
+
+        for (int i = 1; i <= n; i++) {
+            result[cnt] = i;
+            combination(i + 1, cnt + 1);
+
+        }
+    }
+}
